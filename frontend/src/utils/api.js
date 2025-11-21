@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:3000';
+const API_URL = 'https://messageapp-1a2r.onrender.com';
 
 const api = axios.create({
     baseURL: API_URL,
