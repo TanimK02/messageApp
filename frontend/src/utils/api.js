@@ -15,6 +15,20 @@ api.interceptors.request.use((config) => {
     return config;
 });
 
+// Handle expired token responses
+api.interceptors.response.use(
+    (response) => response,
+    (error) => {
+        if (error.response?.status === 401) {
+            // Token is invalid or expired
+            localStorage.removeItem('token');
+            localStorage.removeItem('userId');
+            window.location.href = '/login';
+        }
+        return Promise.reject(error);
+    }
+);
+
 // Auth APIs
 export const register = async (email, password, username, name) => {
     const response = await api.post('/users/register', { email, password, username, name });

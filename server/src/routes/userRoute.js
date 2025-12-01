@@ -37,7 +37,7 @@ body("name").not().isEmpty()
         return res.status(400).json({ errors: errors.array() });
     }
 
-    const { email, password, username, name } = req.body;
+    const { email, password, username } = req.body;
     const passwordHash = bcrypt.hashSync(password, 10);
 
     try {
@@ -45,7 +45,6 @@ body("name").not().isEmpty()
             data: {
                 email,
                 username,
-                name,
                 passwordHash
             }
         });
